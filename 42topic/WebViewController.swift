@@ -19,6 +19,9 @@ import WebKit
 //После чего делаем POST-request на https://api.intra.42.fr/oauth/token c имеющимся кодом
 //что бы получить acess-token - и с ним уж делать все остальные операции - считай это конец авторизации.
 
+var code: String?
+var accesToken: String?
+
 class WebViewController: UIViewController, WKNavigationDelegate {
 
     
@@ -46,13 +49,12 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             if ((url.valueOf("code")) != nil){
                 print("CATCH" + url.valueOf("code")!)
                 //todo redirect тут надо сделать переход на другую вьюшку!!! пока не знаю как;
-                
+                code = url.valueOf("code")
+                getAuthorithationCode(parameter: url.valueOf("code")!)
                 let vc = storyboard?.instantiateViewController(withIdentifier: "control2") as! ViewController2
                 self.present(vc, animated: true, completion: nil)
-                
-                getAuthorithationCode(parameter: url.valueOf("code")!)
             }
-            print("### URL:", self.myWebView.url!)
+//            print("### URL:", self.myWebView.url!)
         }
     }
     
@@ -73,14 +75,16 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 print("error=\(String(describing: error))")
                 return
             }
-            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
+                print("response = \(String(describing: response))")
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
+            let json = try? JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            let resul = json!.value(forKey: "access_token");
+            accesToken = String(describing: resul!)
+            print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
