@@ -47,7 +47,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 print("CATCH" + url.valueOf("code")!)
                 //todo redirect тут надо сделать переход на другую вьюшку!!! пока не знаю как;
                 
-                let vc = storyboard?.instantiateViewController(withIdentifier: "control2") as! ViewController2
+                let vc = storyboard?.instantiateViewController(withIdentifier: "control") as! UINavigationController
                 self.present(vc, animated: true, completion: nil)
                 
                 getAuthorithationCode(parameter: url.valueOf("code")!)

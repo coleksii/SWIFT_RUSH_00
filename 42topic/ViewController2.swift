@@ -9,23 +9,23 @@
 import UIKit
 
 class ViewController2: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var data : [TopicData] = []
     
-    @IBOutlet weak var TopicLabel: UILabel!
-    @IBOutlet weak var LoginLabel: UILabel!
-    @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
-    var data: [(String, String, String)] = [("topic", "login", "date"),
-                                            ("lala", "loginlala", "1995")]
+    override func awakeFromNib() {
+        self.data.append(TopicData(topic: "ASDasdaSDsdasDasd;lakSJD;alskdj;alKSDJa;lskdja;lSKDJa;lskdja;lsKDJa;sldkja;SLDJas;ldkja;SLKDJa;lskdja;lSKDJ;alskdj;alSKDJ;alskdj;alKSDJ;alksdj;alsKDJa;lskdja;lsKDJa;lskdj;alKSDFJ;adlkfna;skjdvbna;wjdnv v", name: "Mario", date: "03-02-2016"))
+        self.data.append(TopicData(topic: "Why my repo is empty?", name: "Eric Cartman", date: "23-03-2016"))
+        self.data.append(TopicData(topic: "So close ...", name: "Luigi", date: "12-04-2016"))
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Topic")
-        cell?.textLabel?.text = data[indexPath.row].0
-        cell?.detailTextLabel?.text = data[indexPath.row].2
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Topic") as? TopicCell
+        cell?.aVictim = self.data[indexPath.row]
         return cell!
     }
-    
 }
