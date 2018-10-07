@@ -46,6 +46,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             if ((url.valueOf("code")) != nil){
                 print("CATCH" + url.valueOf("code")!)
                 //todo redirect тут надо сделать переход на другую вьюшку!!! пока не знаю как;
+                
+                let vc = storyboard?.instantiateViewController(withIdentifier: "control2") as! ViewController2
+                self.present(vc, animated: true, completion: nil)
+                
                 getAuthorithationCode(parameter: url.valueOf("code")!)
             }
             print("### URL:", self.myWebView.url!)
@@ -66,7 +70,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         //выполняем запрос
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 return
             }
             
