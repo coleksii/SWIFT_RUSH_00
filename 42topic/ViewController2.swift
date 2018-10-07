@@ -7,9 +7,9 @@
 //
 
 import UIKit
-
+var dataTopic : [TopicData] = []
+var dataMessage: [MessageData] = []
 class ViewController2: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var data : [TopicData] = []
     
     struct Author : Decodable {
         let login: String
@@ -22,6 +22,12 @@ class ViewController2: UIViewController, UITableViewDataSource, UITableViewDeleg
         let created_at: String
     }
     
+    struct Messages : Decodable {
+        let id: Int
+        let author: Author
+        let content: String
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
 //    override func awakeFromNib() {
@@ -31,12 +37,12 @@ class ViewController2: UIViewController, UITableViewDataSource, UITableViewDeleg
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return dataTopic.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Topic") as? TopicCell
-        cell?.aVictim = self.data[indexPath.row]
+        cell?.aVictim = dataTopic[indexPath.row]
         return cell!
     }
     
@@ -45,9 +51,6 @@ class ViewController2: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func loadTopics(){
-        print("LOAD TOPICS")
-        if (accesToken != nil){
-            print("SUCCES ACCESS")
             let url = URL(string: "https://api.intra.42.fr//v2/topics.json")!
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
@@ -64,8 +67,7 @@ class ViewController2: UIViewController, UITableViewDataSource, UITableViewDeleg
                     
                     print(topics[0].author.login)
                     for topic in topics{
-                        self.data.append(TopicData(topic: topic.name, name: topic.author.login, date: topic.created_at))
-                        print(topic.author.login)
+                        dataTopic.append(TopicData(topic: topic.name, name: topic.author.login, date: topic.created_at))
                     }
                     DispatchQueue.main.async{
                         self.tableView.reloadData()
@@ -77,7 +79,39 @@ class ViewController2: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
                 
                 }.resume()
-            print("RESUME");
+        loadMessages()
         }
+    
+    func loadMessages(){
+        let url = URL(string: "https://api.intra.42.fr/v2/messages")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        print("Bearer " + accesToken!)
+        request.setValue("Bearer " + accesToken!, forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            
+            guard let data = data else{ return}
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                let messages = try jsonDecoder.decode([Messages].self, from: data)
+                
+                print("MESSAGES");
+                print(messages[0].author.login)
+                for message in messages{
+                    print(message.author.login)
+//                    dataTopic.append(TopicData(topic: topic.name, name: topic.author.login, date: topic.created_at))
+                    dataMessage.append(MessageData(message: message.content, name: message.author.login))
+                }
+                DispatchQueue.main.async{
+                    self.tableView.reloadData()
+                }
+                
+            }catch let err{
+                print("ERROR", err)
+            }
+            
+            }.resume()
     }
 }

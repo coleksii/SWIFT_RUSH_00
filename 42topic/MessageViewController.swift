@@ -15,9 +15,9 @@ class MessageViewController: UIViewController {
     var mess : [MessageData] = []
     
     override func awakeFromNib() {
-        self.mess.append(MessageData(message: "lol kek", name: "Meri", date: "03-02-2016"))
-        self.mess.append(MessageData(message: "googli", name: "House", date: "23-03-2016"))
-        self.mess.append(MessageData(message: "dosvidos", name: "Karter", date: "12-04-2016"))
+//        self.mess.append(MessageData(message: "lol kek", name: "Meri"))
+//        self.mess.append(MessageData(message: "googli", name: "House", date: "23-03-2016"))
+//        self.mess.append(MessageData(message: "dosvidos", name: "Karter", date: "12-04-2016"))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

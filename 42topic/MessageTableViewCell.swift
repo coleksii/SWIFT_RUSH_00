@@ -20,7 +20,7 @@ class MessageTableViewCell: UITableViewCell {
             if let v = message{
                 messageLabel?.text = v.message
                 nameMLabel?.text = v.name
-                dateMDate?.text = v.date
+                
             }
         }
     }

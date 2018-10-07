@@ -11,5 +11,4 @@ import Foundation
 struct MessageData {
     var message: String
     var name: String
-    var date: String
 }

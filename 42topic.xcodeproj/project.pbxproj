@@ -14,6 +14,7 @@
 		2B658EDF2168F6B8004FEB3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B658EDD2168F6B8004FEB3C /* LaunchScreen.storyboard */; };
 		2B658EE72168FC63004FEB3C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B658EE62168FC63004FEB3C /* WebViewController.swift */; };
 		2BC40C38216A1F9500517456 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC40C37216A1F9500517456 /* ViewController2.swift */; };
+		2BF3AC9D216A9E88002E93F7 /* TableViewControllerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AC9C216A9E88002E93F7 /* TableViewControllerMessage.swift */; };
 		DF91DB23216A3867002E2EC5 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF91DB22216A3867002E2EC5 /* TopicCell.swift */; };
 		DF91DB25216A40C4002E2EC5 /* TopicStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF91DB24216A40C4002E2EC5 /* TopicStruct.swift */; };
 		DF91DB31216A57D2002E2EC5 /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF91DB2E216A57D2002E2EC5 /* MessageStruct.swift */; };
@@ -32,6 +33,7 @@
 		2B658EE02168F6B8004FEB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B658EE62168FC63004FEB3C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2BC40C37216A1F9500517456 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		2BF3AC9C216A9E88002E93F7 /* TableViewControllerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerMessage.swift; sourceTree = "<group>"; };
 		DF91DB22216A3867002E2EC5 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		DF91DB24216A40C4002E2EC5 /* TopicStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicStruct.swift; sourceTree = "<group>"; };
 		DF91DB2E216A57D2002E2EC5 /* MessageStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				2B658ED42168F6B8004FEB3C /* AppDelegate.swift */,
 				2B658ED62168F6B8004FEB3C /* ViewController.swift */,
 				2B658ED82168F6B8004FEB3C /* Main.storyboard */,
+				2BF3AC9C216A9E88002E93F7 /* TableViewControllerMessage.swift */,
 				2BC40C37216A1F9500517456 /* ViewController2.swift */,
 				DF91DB34216A6295002E2EC5 /* addTopicViewController.swift */,
 				DF91DB2E216A57D2002E2EC5 /* MessageStruct.swift */,
@@ -168,6 +171,7 @@
 				2B658EE72168FC63004FEB3C /* WebViewController.swift in Sources */,
 				DF91DB25216A40C4002E2EC5 /* TopicStruct.swift in Sources */,
 				DF91DB32216A57D2002E2EC5 /* MessageTableViewCell.swift in Sources */,
+				2BF3AC9D216A9E88002E93F7 /* TableViewControllerMessage.swift in Sources */,
 				DF91DB31216A57D2002E2EC5 /* MessageStruct.swift in Sources */,
 				2B658ED52168F6B8004FEB3C /* AppDelegate.swift in Sources */,
 			);
