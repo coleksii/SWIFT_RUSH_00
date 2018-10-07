@@ -19,8 +19,11 @@ import WebKit
 //После чего делаем POST-request на https://api.intra.42.fr/oauth/token c имеющимся кодом
 //что бы получить acess-token - и с ним уж делать все остальные операции - считай это конец авторизации.
 
-class WebViewController: UIViewController, WKNavigationDelegate {
+var code: String?
+var accesToken: String?
 
+class WebViewController: UIViewController, WKNavigationDelegate {
+    
     
     @IBOutlet weak var myWebView: WKWebView!
     
@@ -47,10 +50,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 print("CATCH" + url.valueOf("code")!)
                 //todo redirect тут надо сделать переход на другую вьюшку!!! пока не знаю как;
                 
-                let vc = storyboard?.instantiateViewController(withIdentifier: "control") as! UINavigationController
-                self.present(vc, animated: true, completion: nil)
+                
                 
                 getAuthorithationCode(parameter: url.valueOf("code")!)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "control") as! UINavigationController
+                self.present(vc, animated: true, completion: nil)
             }
             print("### URL:", self.myWebView.url!)
         }
@@ -64,7 +68,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         request.httpMethod = "POST"
         let postString = "grant_type=authorization_code&client_id=" + self.uid + "&client_secret=" + self.secret +
             "&code=" + parameter +
-            "&redirect_uri=https://www.awd.com/"
+        "&redirect_uri=https://www.awd.com/"
         request.httpBody = postString.data(using: .utf8)
         
         //выполняем запрос
@@ -73,18 +77,19 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 print("error=\(String(describing: error))")
                 return
             }
-            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(String(describing: response))")
             }
             
             let responseString = String(data: data, encoding: .utf8)
+            let json = try? JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            let resul = json!.value(forKey: "access_token");
+            accesToken = String(describing: resul!)
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
-    
 }
 
 extension URL {
@@ -93,3 +98,4 @@ extension URL {
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
     }
 }
+
