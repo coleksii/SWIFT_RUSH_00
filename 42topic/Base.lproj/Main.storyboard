@@ -172,7 +172,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="142" id="aaf-Hu-Vxg" customClass="MessageTableViewCell" customModule="_2topic" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageTable" rowHeight="142" id="aaf-Hu-Vxg" customClass="MessageTableViewCell" customModule="_2topic" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aaf-Hu-Vxg" id="PrS-HO-yXA" customClass="MessegeTableViewCell" customModule="_2topic" customModuleProvider="target">
@@ -259,13 +259,48 @@
                     <view key="view" contentMode="scaleToFill" id="ecG-qW-LzE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcK-Yu-W4G">
+                                <rect key="frame" x="0.0" y="95" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5oW-Ob-2ey" id="hWl-CQ-TSv"/>
+                                    <outlet property="delegate" destination="5oW-Ob-2ey" id="y8W-SH-pR8"/>
+                                </connections>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lol kek cheburek" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="51X-SC-YN8">
+                                <rect key="frame" x="16" y="64" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="hello" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Leo-2M-B71">
+                                <rect key="frame" x="45" y="377" width="284" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mcK-Yu-W4G" firstAttribute="leading" secondItem="lea-18-JEx" secondAttribute="leading" id="41N-vu-pj8"/>
+                            <constraint firstItem="mcK-Yu-W4G" firstAttribute="trailing" secondItem="lea-18-JEx" secondAttribute="trailing" id="6oD-gI-tra"/>
+                            <constraint firstItem="51X-SC-YN8" firstAttribute="top" secondItem="lea-18-JEx" secondAttribute="top" id="C0g-Yq-F0C"/>
+                            <constraint firstItem="mcK-Yu-W4G" firstAttribute="firstBaseline" secondItem="51X-SC-YN8" secondAttribute="baseline" constant="11" symbolType="layoutAnchor" id="CX5-IE-gLg"/>
+                            <constraint firstItem="lea-18-JEx" firstAttribute="trailing" secondItem="51X-SC-YN8" secondAttribute="trailing" constant="16" id="nTq-Dx-iZR"/>
+                            <constraint firstItem="51X-SC-YN8" firstAttribute="leading" secondItem="lea-18-JEx" secondAttribute="leading" constant="16" id="ujS-dB-xHn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lea-18-JEx"/>
                     </view>
+                    <connections>
+                        <outlet property="kindPicker" destination="mcK-Yu-W4G" id="fjT-Zd-3jz"/>
+                        <outlet property="messageText" destination="Leo-2M-B71" id="HnM-7J-RRH"/>
+                        <outlet property="topicName" destination="51X-SC-YN8" id="ooW-9p-iue"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3j-fy-iF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1438" y="-141"/>
+            <point key="canvasLocation" x="1437.5999999999999" y="-141.67916041979012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fXV-uP-I1m">

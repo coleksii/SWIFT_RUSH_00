@@ -8,12 +8,33 @@
 
 import UIKit
 
-class addTopicViewController: UIViewController {
+class addTopicViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var topicName: UITextField!
+    @IBOutlet weak var kindPicker: UIPickerView!
+    @IBOutlet weak var messageText: UITextView!
+    
+    let kind : [String] = ["Normal", "Survey", "Stack Overflow"]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return kind[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return kind.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+         self.messageText?.layer.borderWidth = 1
     }
 
     override func didReceiveMemoryWarning() {
